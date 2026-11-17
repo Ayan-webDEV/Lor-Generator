@@ -127,8 +127,8 @@ export async function generatePdf(payload) {
   }
 
   const blob = await response.blob();
-
-  const safeBatchName = (payload.batchName || "VELOOP-LOR")
+  console.log(payload);
+  const safeBatchName = (payload.groupName || "VELOOP-LOR")
     .replace(/[<>:"/\\|?*\x00-\x1F]/g, "-")
     .trim();
 
