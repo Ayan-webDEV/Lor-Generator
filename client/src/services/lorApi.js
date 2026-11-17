@@ -88,12 +88,36 @@ export async function fetchTemplates() {
   return response.json();
 }
 
+// export async function generatePdf(payload) {
+//   const response = await fetch(`${API_URL}/lor/generate`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(payload),
+//   });
+
+//   if (!response.ok) {
+//     const error = await response.json().catch(() => ({}));
+//     throw new Error(error.message || "PDF generation failed.");
+//   }
+
+//   const blob = await response.blob();
+
+//   const disposition = response.headers.get("content-disposition") || "";
+
+//   const match = disposition.match(/filename="?([^"]+)"?/i);
+
+//   return {
+//     blob,
+//     fileName: match?.[1] || "VELOOP-LOR-Selection-Record.pdf",
+//   };
+// }
+
 export async function generatePdf(payload) {
   const response = await fetch(`${API_URL}/lor/generate`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
 
@@ -104,12 +128,12 @@ export async function generatePdf(payload) {
 
   const blob = await response.blob();
 
-  const disposition = response.headers.get("content-disposition") || "";
-
-  const match = disposition.match(/filename="?([^"]+)"?/i);
+  const safeBatchName = (payload.batchName || "VELOOP-LOR")
+    .replace(/[<>:"/\\|?*\x00-\x1F]/g, "-")
+    .trim();
 
   return {
     blob,
-    fileName: match?.[1] || "VELOOP-LOR-Selection-Record.pdf",
+    fileName: `${safeBatchName}.pdf`,
   };
 }
