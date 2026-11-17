@@ -37,6 +37,7 @@ export default function InternFields({ index, intern, onChange }) {
     "UI/UX Designing Intern",
     "Graphic Designing Intern",
     "Content Writing Intern",
+    "SEO Intern",
     "Digital Marketing Intern",
     "Data Analysis Intern",
   ];
