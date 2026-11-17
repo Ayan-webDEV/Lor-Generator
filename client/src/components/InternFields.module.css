@@ -146,6 +146,10 @@
   text-transform: lowercase;
 }
 
+.internIdField input {
+  text-transform: uppercase;
+}
+
 .field input::placeholder {
   color: #8792a3;
 }

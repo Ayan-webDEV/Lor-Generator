@@ -95,7 +95,7 @@ export default function InternFields({ index, intern, onChange }) {
             key={key}
             className={`${styles.field} ${
               key === "email" ? styles.emailField : ""
-            }`}
+            } ${key === "internId" ? styles.internIdField : ""}`}
           >
             <span>
               <Icon size={13} /> {label}
