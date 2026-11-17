@@ -134,6 +134,6 @@ export async function generatePdf(payload) {
 
   return {
     blob,
-    fileName: `LOR-${safeBatchName}.pdf`,
+    fileName: `LOR-List-${safeBatchName}.pdf`,
   };
 }
